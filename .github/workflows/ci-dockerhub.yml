@@ -1,4 +1,4 @@
-name: co-dockerhub
+name: python-ci-dockerhub
 on:
   push:
     branches: ["main", "python-cicd-lab"]
