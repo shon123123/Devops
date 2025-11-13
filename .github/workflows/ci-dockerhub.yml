@@ -8,6 +8,9 @@ on:
 jobs: 
   build-test-push:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./python-ci-docker-lab
     steps: 
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
@@ -23,6 +26,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: docker/build-push-action@v6
         with:
+          context: ./python-ci-docker-lab
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/python-ci-lab:latest
       
