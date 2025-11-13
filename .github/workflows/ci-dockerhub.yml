@@ -15,15 +15,15 @@ jobs:
          python-version: "3.11"
          
       - run: |
-          pip install -r python-ci-docker-lab/requirements.txt
-          cd python-ci-docker-lab && pytest -q
+          pip install -r requirements.txt
+          pytest -q
       - uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: docker/build-push-action@v6
         with:
-          context: ./python-ci-docker-lab
+          context: .
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/python-ci-lab:latest
       
